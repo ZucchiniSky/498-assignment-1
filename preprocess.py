@@ -20,7 +20,7 @@ def tokenizeText(text):
     noDateText = " ".join(re.split(dateReg, text))
     noNumberText = " ".join(re.split("[0-9]", noDateText))
     print "trimmed text is " + noNumberText
-    tokens = re.split("[\w,;!?()/]*", noNumberText)
+    tokens = re.split("[\s,;!?()/]*", noNumberText)
     filter(wordIsValid, tokens)
     for token in tokens:
         print "token: " + token
