@@ -28,9 +28,13 @@ def tokenizeText(text):
 def listDiff(first, second):
     second = set(second)
     diff = []
-    for element in first:
-        if (element not in second):
-            diff.append(element)
+    for x in first:
+        found = 0
+        for y in second:
+            if (x == y):
+                found = 1
+        if (found == 1):
+            diff.append(x)
     return diff
 
 #removes stopwords from list of tokens
