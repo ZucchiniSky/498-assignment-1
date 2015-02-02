@@ -31,7 +31,9 @@ def listDiff(first, second):
 def removeStopwords(tokens):
     stopwords = []
     INFILE = open("stopwords")
-    stopwords.append(INFILE.readline().rstrip("\n"))
+    for line in INFILE:
+        stopwords.append(line.rstrip("\n"))
+        print "line is " + line.rstrip("\n")
     INFILE.close()
     return listDiff(tokens, stopwords)
 
