@@ -3,7 +3,7 @@ import re
 #returns list of tokens in a SGML-less text
 def tokenizeTextNoDates(text):
     noNumberText = " ".join(re.split("[0-9]", text))
-    tokens = re.split("\w*|[\-.,;!?()/]", noNumberText)
+    tokens = re.split("[\s,;!?()/]*", noNumberText)
     return tokens
 
 #returns a map of unigrams to frequencies and a map of bigrams to frequencies

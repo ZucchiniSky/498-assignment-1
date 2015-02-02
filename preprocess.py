@@ -15,22 +15,23 @@ def wordIsValid(word):
 def tokenizeText(text):
     dateReg = "(Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June|Jul|July|Aug|August|Sep|September|Oct|October|Nov|November|Dec|December|([01][0-9]))[ /.]([0-2][0-9])[ ,/.][1-9][0-9]*"
     dates = re.findall(dateReg, text)
-    for date in dates:
-        print "found date: " + date
     noDateText = " ".join(re.split(dateReg, text))
     noNumberText = " ".join(re.split("[0-9]", noDateText))
     print "trimmed text is " + noNumberText
     tokens = re.split("[\s,;!?()/]*", noNumberText)
     filter(wordIsValid, tokens)
-    for token in tokens:
-        print "token: " + token
+    print tokens
     tokens.append(dates)
     return tokens
 
 #computes first - second
 def listDiff(first, second):
     second = set(second)
-    return [element for element in first if element not in second]
+    diff = []
+    for element in first:
+        if (element not in second):
+            diff.append(element)
+    return diff
 
 #removes stopwords from list of tokens
 def removeStopwords(tokens):
