@@ -15,10 +15,14 @@ def wordIsValid(word):
 def tokenizeText(text):
     dateReg = "(Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June|Jul|July|Aug|August|Sep|September|Oct|October|Nov|November|Dec|December|([01][0-9]))[ /.]([0-2][0-9])[ ,/.][1-9][0-9]*"
     dates = re.findall(dateReg, text)
+    for date in dates:
+        print "found date: " + date
     noDateText = " ".join(re.split(dateReg, text))
     noNumberText = " ".join(re.split("[0-9]", noDateText))
     tokens = re.split("\w*|[,;!?()/]", noNumberText)
     filter(wordIsValid, tokens)
+    for token in tokens:
+        print "token: " + token
     tokens.append(dates)
     return tokens
 
@@ -33,7 +37,6 @@ def removeStopwords(tokens):
     INFILE = open("stopwords")
     for line in INFILE:
         stopwords.append(line.rstrip("\n"))
-        print "line is " + line.rstrip("\n")
     INFILE.close()
     return listDiff(tokens, stopwords)
 
