@@ -59,9 +59,8 @@ def sortByFreq(x, y):
     return x[1] - y[1]
 
 def main(args):
-    if len(args) != 1:
-        print "incorrect command line arguments\n"
-        return
+    if len(args) != 2:
+        print "incorrect command line arguments"
     folder = args[1]
     files = [filename for filename in listdir(folder) if isfile(join(folder, filename))]
     tokens = []
