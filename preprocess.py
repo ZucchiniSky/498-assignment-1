@@ -18,10 +18,9 @@ def tokenizeText(text):
     for date in dates:
         print "found date: " + date
     noDateText = " ".join(re.split(dateReg, text))
-    print "text without dates is " + noDateText
     noNumberText = " ".join(re.split("[0-9]", noDateText))
-    print "text without numbers is " + noNumberText
-    tokens = re.split("\w*|[,;!?()/]", noNumberText)
+    print "trimmed text is " + noNumberText
+    tokens = re.split("[\w,;!?()/]*", noNumberText)
     filter(wordIsValid, tokens)
     for token in tokens:
         print "token: " + token
