@@ -3,6 +3,15 @@ from os import listdir
 from os.path import isfile, join
 from porterstemmer import PorterStemmer
 
+stopwords = []
+
+#generates the list of stopwords
+def generateStopwords():
+    INFILE = open("stopwords")
+    for line in INFILE:
+        stopwords.append(line.rstrip("\n"))
+    INFILE.close()
+
 #removes SGML tags from a text and replaces them with " "
 def removeSGML(text):
     return " ".join(re.split("<.*?>", text))
@@ -17,11 +26,10 @@ def tokenizeText(text):
     dates = re.findall(dateReg, text)
     noDateText = " ".join(re.split(dateReg, text))
     noNumberText = " ".join(re.split("[0-9]", noDateText))
-    print "trimmed text is " + noNumberText
     tokens = re.split("[\s,;!?()/]*", noNumberText)
     filter(wordIsValid, tokens)
-    print tokens
     tokens.append(dates)
+    print tokens
     return tokens
 
 #computes first - second
@@ -33,17 +41,12 @@ def listDiff(first, second):
         for y in second:
             if (x == y):
                 found = 1
-        if (found == 1):
+        if (found == 0):
             diff.append(x)
     return diff
 
 #removes stopwords from list of tokens
 def removeStopwords(tokens):
-    stopwords = []
-    INFILE = open("stopwords")
-    for line in INFILE:
-        stopwords.append(line.rstrip("\n"))
-    INFILE.close()
     return listDiff(tokens, stopwords)
 
 #stems a single word
@@ -75,8 +78,11 @@ def main(args):
     folder = args[1]
     files = [folder + filename for filename in listdir(folder) if isfile(join(folder, filename))]
     tokens = []
+    generateStopwords()
     for filename in files:
-        tokens.append(processFile(filename))
+        filetokens = processFile(filename)
+        for token in filetokens:
+            tokens.append(token)
     vocab = set(tokens)
     print "Words " + len(tokens) + "\n"
     print "Vocabulary " + len(set(tokens)) + "\n"
