@@ -62,7 +62,7 @@ def main(args):
     if len(args) != 2:
         print "incorrect command line arguments"
     folder = args[1]
-    files = [filename for filename in listdir(folder) if isfile(join(folder, filename))]
+    files = [folder + filename for filename in listdir(folder) if isfile(join(folder, filename))]
     tokens = []
     for filename in files:
         tokens.append(processFile(filename))
