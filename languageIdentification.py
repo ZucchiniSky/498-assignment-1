@@ -46,7 +46,7 @@ def identifyLanguage(text, languages, uniFreq, biFreq):
 
 def main(args):
     if len(args) != 2:
-        print "incorrect command line arguments\n"
+        print "incorrect command line arguments"
         return
     testfile = args[1]
     languageNames = ["English", "French", "Italian"]

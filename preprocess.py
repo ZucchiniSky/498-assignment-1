@@ -77,13 +77,13 @@ def main(args):
         for token in filetokens:
             tokens.append(token)
     vocab = set(tokens)
-    print "Words " + str(len(tokens)) + "\n"
-    print "Vocabulary " + str(len(vocab)) + "\n"
+    print "Words " + str(len(tokens))
+    print "Vocabulary " + str(len(vocab))
     frequencies = []
     for word in vocab:
         frequencies.append([word, tokens.count(word)])
-    print "Top 50 Words\n"
-    sorted(frequencies, cmp=sortByFreq)
+    print "Top 50 Words"
+    frequencies = sorted(frequencies, cmp=sortByFreq)
     for i in range(0, 50):
         print str(frequencies[i][0]) + " " + str(frequencies[i][1]) + "\n"
 
