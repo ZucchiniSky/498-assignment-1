@@ -7,7 +7,7 @@ stopwords = []
 dateMonth = "([jJ]an|[jJ]anuary|[fF]eb|[fF]ebruary|[mM]ar|[mM]arch|[aA]pr|[aA]pril|[mM]ay|[jJ]un|[jJ]une|[jJ]ul|[jJ]uly|[aA]ug|[aA]ugust|[sS]ep|[sS]eptember|[oO]ct|[oO]ctober|[nN]ov|[nN]ovember|[dD]ec|[dD]ecember|1[012]|0?[1-9])"
 dateDay = "(0?[1-9]|[1-2][0-9]|3[0-1])"
 dateYear = "[1-9][0-9]*"
-dateReg = "(" + dateMonth + "[- /]" + dateDay + "[- ,/]" + dateYear + ")"
+dateReg = "(" + dateMonth + "[- ]" + dateDay + "[- ,]" + dateYear + ")"
 
 #generates the list of stopwords
 def generateStopwords():
