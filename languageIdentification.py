@@ -33,11 +33,11 @@ def identifyLanguage(text, languages, uniFreq, biFreq):
     likely = 0
     index = 0
     words = tokenizeTextNoDates(text)
-    for i in range(0, len(languages) - 1):
+    for i in range(0, len(languages)):
         prob = 1
-        charCount = len(uniFreq)
+        charCount = len(uniFreq[i])
         for word in words:
-            for x in range(1, len(word) - 1):
+            for x in range(1, len(word)):
                 bigram = word[x-1] + word[x]
                 unigram = word[x]
                 bigramFreq = 0
