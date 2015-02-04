@@ -3,7 +3,7 @@ import re
 #returns list of tokens in a SGML-less text
 def tokenizeTextNoDates(text):
     noNumberText = " ".join(re.split("[0-9]", text))
-    tokens = re.split("[\s,;!?()/]*", noNumberText)
+    tokens = re.split("[^\w]*", noNumberText)
     return tokens
 
 #returns a map of unigrams to frequencies and a map of bigrams to frequencies
@@ -12,8 +12,8 @@ def trainBigramLanguageModel(training):
     unigrams = []
     bigrams = []
     for token in tokens:
-        currentUnigrams = re.findall(".", token)
-        currentBigrams = re.findall("..", token)
+        currentUnigrams = re.findall("\w", token)
+        currentBigrams = re.findall("\w\w", token)
         for unigram in currentUnigrams:
             unigrams.append(unigram)
         for bigram in currentBigrams:
@@ -42,6 +42,8 @@ def identifyLanguage(text, languages, uniFreq, biFreq):
         charCount = len(uniFreq)
         for word in words:
             for x in range(1, len(word) - 1):
+                print "bigram is " + word[x-1] + word[x]
+                print biFreq[word[x-1] + word[x]]
                 prob *= (biFreq[word[x-1] + word[x]] + 1) / (uniFreq[word[x]] + charCount)
         if (prob > likely):
             likely = prob
