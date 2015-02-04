@@ -1,5 +1,13 @@
 import re
 
+#turn a list of nonunique items into a list of distinct items
+def uniquifyList(list):
+    newList = []
+    for element in list:
+        if element not in newList:
+            newList.append(element)
+    return newList
+
 #returns list of tokens in a SGML-less text
 def tokenizeTextNoDates(text):
     noNumberText = " ".join(re.split("[0-9]", text))
@@ -16,12 +24,12 @@ def trainBigramLanguageModel(training):
         bigrams.append(re.findall("..", token))
     uniFreq = {}
     biFreq = {}
-    uniset = set(unigrams)
-    biset = set(bigrams)
+    uniset = uniquifyList(unigrams)
+    biset = uniquifyList(bigrams)
     for unigram in uniset:
         uniFreq[unigram] = unigrams.count(unigram)
     for bigram in biset:
-        biFreq[unigram] = bigrams.count(bigram)
+        biFreq[bigram] = bigrams.count(bigram)
     return uniFreq, biFreq
 
 #identify most likely language for a text given list of languages names, and maps of frequencies
@@ -41,7 +49,7 @@ def identifyLanguage(text, languages, uniFreq, biFreq):
     return languages[index]
 
 def main(args):
-    if len(args) != 1:
+    if len(args) != 2:
         print "incorrect command line arguments\n"
         return
     testfile = args[1]
@@ -59,3 +67,6 @@ def main(args):
         text = line.rstrip("\n")
         print text + " " + identifyLanguage(text, languageNames, unigramMaps, bigramMaps)
     INFILE.close()
+
+def runLang():
+    main([",", "languageIdentification.data/test"])

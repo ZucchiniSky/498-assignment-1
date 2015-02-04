@@ -72,6 +72,14 @@ def processFile(filename):
 def sortByFreq(x, y):
     return x[1] - y[1]
 
+#turn a list of nonunique items into a list of distinct items
+def uniquifyList(list):
+    newList = []
+    for element in list:
+        if element not in newList:
+            newList.append(element)
+    return newList
+
 def main(args):
     if len(args) != 2:
         print "incorrect command line arguments"
@@ -83,9 +91,9 @@ def main(args):
         filetokens = processFile(filename)
         for token in filetokens:
             tokens.append(token)
-    vocab = set(tokens)
+    vocab = uniquifyList(tokens)
     print "Words " + len(tokens) + "\n"
-    print "Vocabulary " + len(set(tokens)) + "\n"
+    print "Vocabulary " + len(vocab) + "\n"
     frequencies = []
     for word in vocab:
         frequencies.append([word, tokens.count(word)])
@@ -93,3 +101,6 @@ def main(args):
     sorted(frequencies, cmp=sortByFreq)
     for i in range(0, 50):
         print frequencies[i][0] + " " + frequencies[i][1] + "\n"
+
+def runToken():
+    main([",", "cranfieldDocs/"])
