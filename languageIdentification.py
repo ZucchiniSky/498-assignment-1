@@ -50,8 +50,6 @@ def identifyLanguage(text, languages, uniFreq, biFreq):
                     bigramFreq = biFreq[i][bigram]
                 if unigram in uniFreq[i]:
                     unigramFreq = uniFreq[i][unigram]
-                print "bigram is " + bigram
-                print bigramFreq
                 prob *= (bigramFreq + 1) / (unigramFreq + charCount)
         if (prob > likely):
             likely = prob
