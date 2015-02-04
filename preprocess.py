@@ -22,9 +22,10 @@ def wordIsValid(word):
 
 #returns list of tokens in a SGML-less text
 def tokenizeText(text):
-    dateReg = "(Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June|Jul|July|Aug|August|Sep|September|Oct|October|Nov|November|Dec|December|([01]?[0-9]))[ /]([0-2]?[0-9])[ ,/][1-9][0-9]*"
+    dateReg = "(Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June|Jul|July|Aug|August|Sep|September|Oct|October|Nov|November|Dec|December|1[012]|0?[1-9])[- /]([0-3]?[0-9])[- ,/][1-9][0-9]*"
     dates = re.findall(dateReg, text)
-    print dates
+    if len(dates) > 0:
+        print dates
     noDateText = " ".join(re.split(dateReg, text))
     noNumberText = " ".join(re.split("[0-9]", noDateText))
     tokens = re.split("[\s,;!?()/]*", noNumberText)
