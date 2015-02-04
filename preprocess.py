@@ -27,7 +27,7 @@ def tokenizeText(text):
     noDateText = " ".join(re.split(dateReg, text))
     noNumberText = " ".join(re.split("[0-9]", noDateText))
     tokens = re.split("[\s,;!?()/]*", noNumberText)
-    filter(wordIsValid, tokens)
+    tokens = filter(wordIsValid, tokens)
     for date in dates:
         tokens.append(date)
     print tokens
@@ -77,15 +77,15 @@ def main(args):
         for token in filetokens:
             tokens.append(token)
     vocab = set(tokens)
-    print "Words " + len(tokens) + "\n"
-    print "Vocabulary " + len(vocab) + "\n"
+    print "Words " + str(len(tokens)) + "\n"
+    print "Vocabulary " + str(len(vocab)) + "\n"
     frequencies = []
     for word in vocab:
         frequencies.append([word, tokens.count(word)])
     print "Top 50 Words\n"
     sorted(frequencies, cmp=sortByFreq)
     for i in range(0, 50):
-        print frequencies[i][0] + " " + frequencies[i][1] + "\n"
+        print str(frequencies[i][0]) + " " + str(frequencies[i][1]) + "\n"
 
 def runToken():
     main([",", "cranfieldDocs/"])
