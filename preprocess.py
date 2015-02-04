@@ -28,22 +28,15 @@ def tokenizeText(text):
     noNumberText = " ".join(re.split("[0-9]", noDateText))
     tokens = re.split("[\s,;!?()/]*", noNumberText)
     filter(wordIsValid, tokens)
-    tokens.append(dates)
+    for date in dates:
+        tokens.append(date)
     print tokens
     return tokens
 
 #computes first - second
 def listDiff(first, second):
     second = set(second)
-    diff = []
-    for x in first:
-        found = 0
-        for y in second:
-            if (x == y):
-                found = 1
-        if (found == 0):
-            diff.append(x)
-    return diff
+    return [x for x in first if x not in second]
 
 #removes stopwords from list of tokens
 def removeStopwords(tokens):
@@ -72,14 +65,6 @@ def processFile(filename):
 def sortByFreq(x, y):
     return x[1] - y[1]
 
-#turn a list of nonunique items into a list of distinct items
-def uniquifyList(list):
-    newList = []
-    for element in list:
-        if element not in newList:
-            newList.append(element)
-    return newList
-
 def main(args):
     if len(args) != 2:
         print "incorrect command line arguments"
@@ -91,7 +76,7 @@ def main(args):
         filetokens = processFile(filename)
         for token in filetokens:
             tokens.append(token)
-    vocab = uniquifyList(tokens)
+    vocab = set(tokens)
     print "Words " + len(tokens) + "\n"
     print "Vocabulary " + len(vocab) + "\n"
     frequencies = []

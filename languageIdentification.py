@@ -1,13 +1,5 @@
 import re
 
-#turn a list of nonunique items into a list of distinct items
-def uniquifyList(list):
-    newList = []
-    for element in list:
-        if element not in newList:
-            newList.append(element)
-    return newList
-
 #returns list of tokens in a SGML-less text
 def tokenizeTextNoDates(text):
     noNumberText = " ".join(re.split("[0-9]", text))
@@ -20,12 +12,16 @@ def trainBigramLanguageModel(training):
     unigrams = []
     bigrams = []
     for token in tokens:
-        unigrams.append(re.findall(".", token))
-        bigrams.append(re.findall("..", token))
+        currentUnigrams = re.findall(".", token)
+        currentBigrams = re.findall("..", token)
+        for unigram in currentUnigrams:
+            unigrams.append(unigram)
+        for bigram in currentBigrams:
+            bigrams.append(bigram)
     uniFreq = {}
     biFreq = {}
-    uniset = uniquifyList(unigrams)
-    biset = uniquifyList(bigrams)
+    uniset = set(unigrams)
+    biset = set(bigrams)
     for unigram in uniset:
         uniFreq[unigram] = unigrams.count(unigram)
     for bigram in biset:
