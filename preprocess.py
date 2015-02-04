@@ -9,7 +9,7 @@ stopwords = []
 def generateStopwords():
     INFILE = open("stopwords")
     for line in INFILE:
-        stopwords.append(line.rstrip("\n"))
+        stopwords.append(line.strip())
     INFILE.close()
 
 #removes SGML tags from a text and replaces them with " "
