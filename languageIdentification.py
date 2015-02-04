@@ -43,8 +43,8 @@ def identifyLanguage(text, languages, uniFreq, biFreq):
         for word in words:
             for x in range(1, len(word) - 1):
                 print "bigram is " + word[x-1] + word[x]
-                print biFreq[word[x-1] + word[x]]
-                prob *= (biFreq[word[x-1] + word[x]] + 1) / (uniFreq[word[x]] + charCount)
+                print biFreq[i][word[x-1] + word[x]]
+                prob *= (biFreq[i][word[x-1] + word[x]] + 1) / (uniFreq[i][word[x]] + charCount)
         if (prob > likely):
             likely = prob
             index = i
