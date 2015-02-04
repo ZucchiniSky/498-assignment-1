@@ -4,6 +4,10 @@ from os.path import isfile, join
 from porterstemmer import PorterStemmer
 
 stopwords = []
+dateMonth = "([jJ]an|[jJ]anuary|[fF]eb|[fF]ebruary|[mM]ar|[mM]arch|[aA]pr|[aA]pril|[mM]ay|[jJ]un|[jJ]une|[jJ]ul|[jJ]uly|[aA]ug|[aA]ugust|[sS]ep|[sS]eptember|[oO]ct|[oO]ctober|[nN]ov|[nN]ovember|[dD]ec|[dD]ecember|1[012]|0?[1-9])"
+dateDay = "(0?[1-9]|[1-2][0-9]|3[0-1])"
+dateYear = "[1-9][0-9]*"
+dateReg = "(" + dateMonth + "[- /]" + dateDay + "[- ,/]" + dateYear + ")"
 
 #generates the list of stopwords
 def generateStopwords():
@@ -22,17 +26,14 @@ def wordIsValid(word):
 
 #returns list of tokens in a SGML-less text
 def tokenizeText(text):
-    dateReg = "((Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June|Jul|July|Aug|August|Sep|September|Oct|October|Nov|November|Dec|December|1[012]|0?[1-9])[- /]([0-3]?[0-9])[- ,/][1-9][0-9]*)"
     dates = re.findall(dateReg, text)
-    if len(dates) > 0:
-        print dates
     noDateText = " ".join(re.split(dateReg, text))
     noNumberText = " ".join(re.split("[0-9]", noDateText))
     tokens = re.split("[\s,;!?()/]*", noNumberText)
     tokens = filter(wordIsValid, tokens)
     for date in dates:
-        tokens.append(date)
-        print date
+        tokens.append(date[0])
+        print date[0]
     return tokens
 
 #computes first - second
