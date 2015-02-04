@@ -72,12 +72,15 @@ def main(args):
     files = [folder + filename for filename in listdir(folder) if isfile(join(folder, filename))]
     tokens = []
     generateStopwords()
+    print "STOPWORDS ARE "
+    print stopwords
     for filename in files:
         filetokens = processFile(filename)
         for token in filetokens:
             tokens.append(token)
     tokens = sorted(tokens)
     vocab = set(tokens)
+    print "VOCAB IS "
     print vocab
     print "Words " + str(len(tokens))
     print "Vocabulary " + str(len(vocab))
