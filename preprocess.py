@@ -30,7 +30,7 @@ def tokenizeText(text):
     tokens = filter(wordIsValid, tokens)
     for date in dates:
         tokens.append(date)
-    print tokens
+        print "FOUND DATE: " + date
     return tokens
 
 #computes first - second
@@ -77,6 +77,7 @@ def main(args):
         for token in filetokens:
             tokens.append(token)
     vocab = set(tokens)
+    print vocab
     print "Words " + str(len(tokens))
     print "Vocabulary " + str(len(vocab))
     frequencies = []
