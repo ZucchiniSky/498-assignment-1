@@ -30,7 +30,7 @@ def tokenizeText(text):
     tokens = filter(wordIsValid, tokens)
     for date in dates:
         tokens.append(date)
-        print "FOUND DATE: " + str(date)
+        print date
     return tokens
 
 #computes first - second
