@@ -26,6 +26,10 @@ def trainBigramLanguageModel(training):
         uniFreq[unigram] = unigrams.count(unigram)
     for bigram in biset:
         biFreq[bigram] = bigrams.count(bigram)
+    print "UNIFREQ: "
+    print uniFreq
+    print "BIFREQ: "
+    print biFreq
     return uniFreq, biFreq
 
 #identify most likely language for a text given list of languages names, and maps of frequencies
@@ -55,12 +59,12 @@ def main(args):
     bigramMaps = []
     for filename in languageFiles:
         INFILE = open(filename)
-        unimap, bimap = trainBigramLanguageModel(INFILE.read().rstrip("\n"))
+        unimap, bimap = trainBigramLanguageModel(INFILE.read().strip())
         unigramMaps.append(unimap)
         bigramMaps.append(bimap)
     INFILE = open(testfile)
     for line in INFILE:
-        text = line.rstrip("\n")
+        text = line.strip()
         print text + " " + identifyLanguage(text, languageNames, unigramMaps, bigramMaps)
     INFILE.close()
 

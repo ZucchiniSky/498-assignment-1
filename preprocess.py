@@ -33,7 +33,6 @@ def tokenizeText(text):
     tokens = filter(wordIsValid, tokens)
     for date in dates:
         tokens.append(date[0])
-        print date[0]
     return tokens
 
 #computes first - second
@@ -82,9 +81,6 @@ def main(args):
         for token in filetokens:
             tokens.append(token)
     vocab = set(tokens)
-    vocab = sorted(vocab)
-    print "VOCAB IS "
-    print vocab
     print "Words " + str(len(tokens))
     print "Vocabulary " + str(len(vocab))
     frequencies = []
@@ -95,5 +91,5 @@ def main(args):
     for i in range(0, 50):
         print str(frequencies[i][0]) + " " + str(frequencies[i][1])
 
-def runToken():
-    main([",", "cranfieldDocs/"])
+#def runToken():
+    #main([",", "cranfieldDocs/"])
