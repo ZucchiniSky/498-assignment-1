@@ -63,7 +63,7 @@ def processFile(filename):
 
 #used to sort a frequency list by highest frequency
 def sortByFreq(x, y):
-    return x[1] - y[1]
+    return y[1] - x[1]
 
 def main(args):
     if len(args) != 2:
