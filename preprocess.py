@@ -22,7 +22,7 @@ def wordIsValid(word):
 
 #returns list of tokens in a SGML-less text
 def tokenizeText(text):
-    dateReg = "(Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June|Jul|July|Aug|August|Sep|September|Oct|October|Nov|November|Dec|December|([01][0-9]))[ /.]([0-2][0-9])[ ,/.][1-9][0-9]*"
+    dateReg = "(Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June|Jul|July|Aug|August|Sep|September|Oct|October|Nov|November|Dec|December|([01]?[0-9]))[ /]([0-2]?[0-9])[ ,/][1-9][0-9]*"
     dates = re.findall(dateReg, text)
     noDateText = " ".join(re.split(dateReg, text))
     noNumberText = " ".join(re.split("[0-9]", noDateText))
@@ -76,6 +76,7 @@ def main(args):
         filetokens = processFile(filename)
         for token in filetokens:
             tokens.append(token)
+    tokens = sorted(tokens)
     vocab = set(tokens)
     print vocab
     print "Words " + str(len(tokens))
