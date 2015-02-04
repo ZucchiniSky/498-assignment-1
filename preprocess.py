@@ -85,7 +85,7 @@ def main(args):
     print "Top 50 Words"
     frequencies = sorted(frequencies, cmp=sortByFreq)
     for i in range(0, 50):
-        print str(frequencies[i][0]) + " " + str(frequencies[i][1]) + "\n"
+        print str(frequencies[i][0]) + " " + str(frequencies[i][1])
 
 def runToken():
     main([",", "cranfieldDocs/"])
