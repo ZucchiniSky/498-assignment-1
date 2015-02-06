@@ -13,6 +13,7 @@ dateMonth = "([jJ]an|[jJ]anuary|[fF]eb|[fF]ebruary|[mM]ar|[mM]arch|[aA]pr|[aA]pr
 dateDay = "(0?[1-9]|[1-2][0-9]|3[0-1])"
 dateYear = "[1-9][0-9]*"
 dateReg = "(" + dateMonth + "[- ]" + dateDay + "[- ,]" + dateYear + ")"
+numReg = "([0-9]*[,.]?)*"
 
 #generates the list of stopwords
 def generateStopwords():
@@ -27,13 +28,14 @@ def removeSGML(text):
 
 #returns true if the word does not contain a "." and is at least one char long
 def wordIsValid(word):
-    return len(word) > 0 and not re.match(".*[.].*", word)
+    return len(word) > 0 and not re.match("[.]$", word)
 
 #returns list of tokens in a SGML-less text
 def tokenizeText(text):
     dates = re.findall(dateReg, text)
     noDateText = " ".join(re.split(dateReg, text))
-    noNumberText = " ".join(re.split("[0-9]", noDateText))
+    numbers = re.findall(numReg, noDateText)
+    noNumberText = " ".join(re.split(numReg, noDateText))
     tokens = re.split("[\s,;!?()/]*", noNumberText)
     newTokens = []
     for token in tokens:
@@ -70,6 +72,9 @@ def tokenizeText(text):
     tokens = filter(wordIsValid, tokens)
     for date in dates:
         tokens.append(date[0])
+    for number in numbers:
+        tokens.append(number[0])
+    print tokens
     return tokens
 
 #computes first - second
