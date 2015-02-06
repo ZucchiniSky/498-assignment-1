@@ -35,36 +35,45 @@ def tokenizeText(text):
             tokens.remove(token)
             tokens.append("not")
             tokens.append("".join(re.split(".*n't", token)))
+            print "appended not and " + "".join(re.split(".*n't", token))
         if re.match("let's", token):
             tokens.remove(token)
             tokens.append("us")
             tokens.append("let")
+            print "appended let us"
         if re.match("I'm", token):
             tokens.remove(token)
             tokens.append("I")
             tokens.append("am")
+            print "appended I am"
         if re.match(".*'re", token):
             tokens.remove(token)
             tokens.append("are")
             tokens.append("".join(re.split(".*'re", token)))
+            print "appended are and " + "".join(re.split(".*'re", token))
         if re.match(".*'s", token):
             tokens.remove(token)
             tokens.append("is")
             tokens.append("".join(re.split(".*'s", token)))
+            tokens.append("'s")
+            print "appended 's and is and " + "".join(re.split(".*'s", token))
         if re.match(".*'ve", token):
             tokens.remove(token)
             tokens.append("have")
             tokens.append("".join(re.split(".*'ve", token)))
+            print "appended have and " + "".join(re.split(".*'ve", token))
         if re.match(".*'d", token):
             tokens.remove(token)
             tokens.append("did")
             tokens.append("would")
             tokens.append("had")
             tokens.append("".join(re.split(".*'d", token)))
+            print "appended did and would and had and " + "".join(re.split(".*'d", token))
         if re.match(".*'ll", token):
             tokens.remove(token)
             tokens.append("will")
             tokens.append("".join(re.split(".*'ll", token)))
+            print "appended will and " + "".join(re.split(".*'ll", token))
     tokens = filter(wordIsValid, tokens)
     for date in dates:
         tokens.append(date[0])
@@ -126,5 +135,5 @@ def main(args):
     for i in range(0, 50):
         print str(frequencies[i][0]) + " " + str(frequencies[i][1])
 
-#def runToken():
-    #main([",", "cranfieldDocs/"])
+def runToken():
+    main([",", "cranfieldDocs/"])
