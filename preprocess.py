@@ -73,7 +73,7 @@ def tokenizeText(text):
     for date in dates:
         tokens.append(date[0])
     for number in numbers:
-        tokens.append(number[0])
+        tokens.append(number)
     print tokens
     return tokens
 
