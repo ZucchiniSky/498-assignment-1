@@ -3,3 +3,88 @@
 #ASSIGNMENT 1
 #EECS 498 WN 2015
 
+For all documents:
+Words 136487
+Vocabulary 6984
+Top 50 Words
+flow 1964
+number 1336
+pressur 1307
+result 1086
+effect 987
+boundari 926
+method 885
+theori 868
+layer 859
+solut 847
+mach 815
+equat 775
+bodi 740
+us 731
+wing 711
+present 699
+heat 685
+surfac 661
+obtain 643
+distribut 640
+shock 614
+problem 590
+ratio 588
+were 582
+temperatur 582
+veloc 553
+approxim 553
+calcul 551
+case 545
+investig 523
+given 520
+test 517
+condit 515
+these 500
+plate 492
+ha 480
+valu 477
+experiment 468
+superson 464
+gener 451
+made 449
+measur 428
+angl 426
+rang 426
+found 424
+wave 420
+speed 415
+can 412
+laminar 411
+jet 402
+
+The minimum number of unique words accounting for a quarter of the total words was 53.
+
+Subset 1: even documents (0, 2, 4...)
+Words 67783
+Vocabulary 4906
+
+Subset 2: every 4 documents (0, 4, 8...)
+Words 35029
+Vocabulary 3567
+
+V = K * n^B
+6984 = K * 1400^B
+4906 = K * 700^B
+3567 = K * 350^B
+
+K = 4906 / 700^B = 3567 / 350^B
+700^B / 4906 = 350^B / 3567
+700^B = 350^B * 1.375
+B = .46
+
+4906 = K * 700^(.46)
+K = 241
+
+for 1mil docs:
+V = 241 * 1000000^(.46)
+V = 139,000
+
+for 1bil docs:
+V = 241 * 100000000^(.46)
+V = 1,150,000
