@@ -1,3 +1,8 @@
+#SCOTT BOMMARITO
+#uniqname: zucchini
+#ASSIGNMENT 1
+#EECS 498 WN 2015
+
 import re
 from os import listdir
 from os.path import isfile, join

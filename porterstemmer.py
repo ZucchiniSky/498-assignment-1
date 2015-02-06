@@ -29,6 +29,11 @@ to:
 release 2: July 2008
 """
 
+#SCOTT BOMMARITO
+#uniqname: zucchini
+#ASSIGNMENT 1
+#EECS 498 WN 2015
+
 import sys
 
 class PorterStemmer:

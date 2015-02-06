@@ -1,3 +1,8 @@
+#SCOTT BOMMARITO
+#uniqname: zucchini
+#ASSIGNMENT 1
+#EECS 498 WN 2015
+
 import re
 
 #returns list of tokens in a SGML-less text
