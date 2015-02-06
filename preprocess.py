@@ -30,50 +30,46 @@ def tokenizeText(text):
     noDateText = " ".join(re.split(dateReg, text))
     noNumberText = " ".join(re.split("[0-9]", noDateText))
     tokens = re.split("[\s,;!?()/]*", noNumberText)
+    newTokens = []
     for token in tokens:
         if re.match(".*n't", token):
-            tokens.remove(token)
-            tokens.append("not")
-            tokens.append("".join(re.split(".*n't", token)))
+            newTokens.append("not")
+            newTokens.append("".join(re.split(".*n't", token)))
             print "appended not and " + "".join(re.split(".*n't", token))
-        if re.match("let's", token):
-            tokens.remove(token)
-            tokens.append("us")
-            tokens.append("let")
+        elif re.match("let's", token):
+            newTokens.append("us")
+            newTokens.append("let")
             print "appended let us"
-        if re.match("I'm", token):
-            tokens.remove(token)
-            tokens.append("I")
-            tokens.append("am")
+        elif re.match("I'm", token):
+            newTokens.append("I")
+            newTokens.append("am")
             print "appended I am"
-        if re.match(".*'re", token):
-            tokens.remove(token)
-            tokens.append("are")
-            tokens.append("".join(re.split(".*'re", token)))
+        elif re.match(".*'re", token):
+            newTokens.append("are")
+            newTokens.append("".join(re.split(".*'re", token)))
             print "appended are and " + "".join(re.split(".*'re", token))
-        if re.match(".*'s", token):
-            tokens.remove(token)
-            tokens.append("is")
-            tokens.append("".join(re.split(".*'s", token)))
-            tokens.append("'s")
+        elif re.match(".*'s", token):
+            newTokens.append("is")
+            newTokens.append("".join(re.split(".*'s", token)))
+            newTokens.append("'s")
             print "appended 's and is and " + "".join(re.split(".*'s", token))
-        if re.match(".*'ve", token):
-            tokens.remove(token)
-            tokens.append("have")
-            tokens.append("".join(re.split(".*'ve", token)))
+        elif re.match(".*'ve", token):
+            newTokens.append("have")
+            newTokens.append("".join(re.split(".*'ve", token)))
             print "appended have and " + "".join(re.split(".*'ve", token))
-        if re.match(".*'d", token):
-            tokens.remove(token)
-            tokens.append("did")
-            tokens.append("would")
-            tokens.append("had")
-            tokens.append("".join(re.split(".*'d", token)))
+        elif re.match(".*'d", token):
+            newTokens.append("did")
+            newTokens.append("would")
+            newTokens.append("had")
+            newTokens.append("".join(re.split(".*'d", token)))
             print "appended did and would and had and " + "".join(re.split(".*'d", token))
-        if re.match(".*'ll", token):
-            tokens.remove(token)
-            tokens.append("will")
-            tokens.append("".join(re.split(".*'ll", token)))
+        elif re.match(".*'ll", token):
+            newTokens.append("will")
+            newTokens.append("".join(re.split(".*'ll", token)))
             print "appended will and " + "".join(re.split(".*'ll", token))
+        else:
+            newTokens.append(token)
+    tokens = newTokens
     tokens = filter(wordIsValid, tokens)
     for date in dates:
         tokens.append(date[0])
