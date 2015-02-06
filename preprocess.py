@@ -121,5 +121,5 @@ def main(args):
     for i in range(0, 50):
         print str(frequencies[i][0]) + " " + str(frequencies[i][1])
 
-def runToken():
-    main([",", "cranfieldDocs/"])
+#def runToken():
+    #main([",", "cranfieldDocs/"])

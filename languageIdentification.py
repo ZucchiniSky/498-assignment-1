@@ -68,9 +68,11 @@ def main(args):
         unigramMaps.append(unimap)
         bigramMaps.append(bimap)
     INFILE = open(testfile)
+    i = 1
     for line in INFILE:
         text = line.strip()
-        print text + " " + identifyLanguage(text, languageNames, unigramMaps, bigramMaps)
+        print i + " " + identifyLanguage(text, languageNames, unigramMaps, bigramMaps)
+        i += 1
     INFILE.close()
 
 def runLang():
