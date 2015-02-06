@@ -128,7 +128,7 @@ def main(args):
         print str(frequencies[i][0]) + " " + str(frequencies[i][1])
         totalfreq += frequencies[i][1]
         if totalfreq > (len(tokens) / 4):
-            print "HERE"
+            print "HERE " + str(i)
 
 #def runToken():
     #main([",", "cranfieldDocs/"])
