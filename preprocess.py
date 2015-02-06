@@ -122,9 +122,13 @@ def main(args):
     for word in vocab:
         frequencies.append([word, tokens.count(word)])
     print "Top 50 Words"
+    totalfreq = 0
     frequencies = sorted(frequencies, cmp=sortByFreq)
-    for i in range(0, 50):
+    for i in range(0, 100):
         print str(frequencies[i][0]) + " " + str(frequencies[i][1])
+        totalfreq += frequencies[i][1]
+        if totalfreq > (len(tokens) / 4):
+            print "HERE"
 
 #def runToken():
     #main([",", "cranfieldDocs/"])

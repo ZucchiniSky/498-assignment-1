@@ -1,0 +1,6 @@
+#SCOTT BOMMARITO
+#uniqname: zucchini
+#ASSIGNMENT 1
+#EECS 498 WN 2015
+
+My language identifier scored 274/300. I thought this was far more accurate than I had expected!
