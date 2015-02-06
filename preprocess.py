@@ -113,7 +113,7 @@ def main(args):
     generateStopwords()
     j = 0
     for filename in files:
-        if j % 2 == 0:
+        if j % 4 == 0:
             filetokens = processFile(filename)
             for token in filetokens:
                 tokens.append(token)
