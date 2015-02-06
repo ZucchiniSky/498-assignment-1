@@ -30,6 +30,41 @@ def tokenizeText(text):
     noDateText = " ".join(re.split(dateReg, text))
     noNumberText = " ".join(re.split("[0-9]", noDateText))
     tokens = re.split("[\s,;!?()/]*", noNumberText)
+    for token in tokens:
+        if re.match(".*n't", token):
+            tokens.remove(token)
+            tokens.append("not")
+            tokens.append("".join(re.split(".*n't", token)))
+        if re.match("let's", token):
+            tokens.remove(token)
+            tokens.append("us")
+            tokens.append("let")
+        if re.match("I'm", token):
+            tokens.remove(token)
+            tokens.append("I")
+            tokens.append("am")
+        if re.match(".*'re", token):
+            tokens.remove(token)
+            tokens.append("are")
+            tokens.append("".join(re.split(".*'re", token)))
+        if re.match(".*'s", token):
+            tokens.remove(token)
+            tokens.append("is")
+            tokens.append("".join(re.split(".*'s", token)))
+        if re.match(".*'ve", token):
+            tokens.remove(token)
+            tokens.append("have")
+            tokens.append("".join(re.split(".*'ve", token)))
+        if re.match(".*'d", token):
+            tokens.remove(token)
+            tokens.append("did")
+            tokens.append("would")
+            tokens.append("had")
+            tokens.append("".join(re.split(".*'d", token)))
+        if re.match(".*'ll", token):
+            tokens.remove(token)
+            tokens.append("will")
+            tokens.append("".join(re.split(".*'ll", token)))
     tokens = filter(wordIsValid, tokens)
     for date in dates:
         tokens.append(date[0])
