@@ -33,10 +33,10 @@ def wordIsValid(word):
 #returns list of tokens in a SGML-less text
 def tokenizeText(text):
     dates = re.findall(dateReg, text)
-    noDateText = " ".join(re.split(dateReg, text))
-    numbers = re.findall(numReg, noDateText)
-    noNumberText = " ".join(re.split(numReg, noDateText))
-    tokens = re.split("[\s,;!?()/]*", noNumberText)
+    text = " ".join(re.split(dateReg, text))
+    numbers = re.findall(numReg, text)
+    text = " ".join(re.split(numReg, text))
+    tokens = re.split("[\s,;!?()/]*", text)
     newTokens = []
     for token in tokens:
         if re.match(".*n't$", token):
