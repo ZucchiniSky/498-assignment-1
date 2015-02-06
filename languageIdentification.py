@@ -30,11 +30,11 @@ def trainBigramLanguageModel(training):
 
 #identify most likely language for a text given list of languages names, and maps of frequencies
 def identifyLanguage(text, languages, uniFreq, biFreq):
-    likely = 0
+    likely = float(0)
     index = 0
     words = tokenizeTextNoDates(text)
     for i in range(0, len(languages)):
-        prob = 1
+        prob = float(1)
         charCount = len(uniFreq[i])
         for word in words:
             for x in range(1, len(word)):
@@ -46,7 +46,7 @@ def identifyLanguage(text, languages, uniFreq, biFreq):
                     bigramFreq = biFreq[i][bigram]
                 if unigram in uniFreq[i]:
                     unigramFreq = uniFreq[i][unigram]
-                prob *= (bigramFreq + 1) / (unigramFreq + charCount)
+                prob *= float(bigramFreq + 1) / float(unigramFreq + charCount)
         print "prob for language " + str(i) + " is " + str(prob)
         if (prob > likely):
             likely = prob
