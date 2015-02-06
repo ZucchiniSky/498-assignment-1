@@ -33,37 +33,45 @@ def tokenizeText(text):
     newTokens = []
     for token in tokens:
         if re.match(".*n't", token):
+            print token
             newTokens.append("not")
             newTokens.append("".join(re.split(".*n't", token)))
             print "appended not and " + "".join(re.split(".*n't", token))
         elif re.match("let's", token):
+            print token
             newTokens.append("us")
             newTokens.append("let")
             print "appended let us"
         elif re.match("I'm", token):
+            print token
             newTokens.append("I")
             newTokens.append("am")
             print "appended I am"
         elif re.match(".*'re", token):
+            print token
             newTokens.append("are")
             newTokens.append("".join(re.split(".*'re", token)))
             print "appended are and " + "".join(re.split(".*'re", token))
         elif re.match(".*'s", token):
+            print token
             newTokens.append("is")
             newTokens.append("".join(re.split(".*'s", token)))
             newTokens.append("'s")
             print "appended 's and is and " + "".join(re.split(".*'s", token))
         elif re.match(".*'ve", token):
+            print token
             newTokens.append("have")
             newTokens.append("".join(re.split(".*'ve", token)))
             print "appended have and " + "".join(re.split(".*'ve", token))
         elif re.match(".*'d", token):
+            print token
             newTokens.append("did")
             newTokens.append("would")
             newTokens.append("had")
             newTokens.append("".join(re.split(".*'d", token)))
             print "appended did and would and had and " + "".join(re.split(".*'d", token))
         elif re.match(".*'ll", token):
+            print token
             newTokens.append("will")
             newTokens.append("".join(re.split(".*'ll", token)))
             print "appended will and " + "".join(re.split(".*'ll", token))
