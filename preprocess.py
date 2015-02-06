@@ -111,10 +111,13 @@ def main(args):
     files = [folder + filename for filename in listdir(folder) if isfile(join(folder, filename))]
     tokens = []
     generateStopwords()
+    j = 0
     for filename in files:
-        filetokens = processFile(filename)
-        for token in filetokens:
-            tokens.append(token)
+        if j % 2 == 0:
+            filetokens = processFile(filename)
+            for token in filetokens:
+                tokens.append(token)
+        j += 1
     vocab = set(tokens)
     print "Words " + str(len(tokens))
     print "Vocabulary " + str(len(vocab))
@@ -124,11 +127,6 @@ def main(args):
     print "Top 50 Words"
     totalfreq = 0
     frequencies = sorted(frequencies, cmp=sortByFreq)
-    for i in range(0, 100):
+    for i in range(0, 50):
         print str(frequencies[i][0]) + " " + str(frequencies[i][1])
         totalfreq += frequencies[i][1]
-        if totalfreq > (len(tokens) / 4):
-            print "HERE " + str(i)
-
-#def runToken():
-    #main([",", "cranfieldDocs/"])

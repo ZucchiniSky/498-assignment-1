@@ -85,6 +85,3 @@ def main(args):
     INFILE.close()
     SOLUTION.close()
     print str(correct) + " / " + str(i - 1)
-
-def runLang():
-    main([",", "languageIdentification.data/test"])
