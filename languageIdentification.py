@@ -47,7 +47,6 @@ def identifyLanguage(text, languages, uniFreq, biFreq):
                 if unigram in uniFreq[i]:
                     unigramFreq = uniFreq[i][unigram]
                 prob *= float(bigramFreq + 1) / float(unigramFreq + charCount)
-        print "prob for language " + str(i) + " is " + str(prob)
         if (prob > likely):
             likely = prob
             index = i
@@ -68,12 +67,19 @@ def main(args):
         unigramMaps.append(unimap)
         bigramMaps.append(bimap)
     INFILE = open(testfile)
+    SOLUTION = open("languageIdentification.data/solution")
     i = 1
+    correct = 0
     for line in INFILE:
         text = line.strip()
-        print str(i) + " " + identifyLanguage(text, languageNames, unigramMaps, bigramMaps)
+        answer = str(i) + " " + identifyLanguage(text, languageNames, unigramMaps, bigramMaps)
+        print answer
         i += 1
+        if SOLUTION.readline() == answer + "\n":
+            correct += 1
     INFILE.close()
+    SOLUTION.close()
+    print str(correct) + " / " + str(i - 1)
 
 def runLang():
     main([",", "languageIdentification.data/test"])
