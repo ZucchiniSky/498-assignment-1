@@ -71,7 +71,7 @@ def main(args):
     i = 1
     for line in INFILE:
         text = line.strip()
-        print i + " " + identifyLanguage(text, languageNames, unigramMaps, bigramMaps)
+        print str(i) + " " + identifyLanguage(text, languageNames, unigramMaps, bigramMaps)
         i += 1
     INFILE.close()
 
