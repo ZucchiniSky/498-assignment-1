@@ -111,13 +111,10 @@ def main(args):
     files = [folder + filename for filename in listdir(folder) if isfile(join(folder, filename))]
     tokens = []
     generateStopwords()
-    j = 0
     for filename in files:
-        if j % 4 == 0:
-            filetokens = processFile(filename)
-            for token in filetokens:
-                tokens.append(token)
-        j += 1
+        filetokens = processFile(filename)
+        for token in filetokens:
+            tokens.append(token)
     vocab = set(tokens)
     print "Words " + str(len(tokens))
     print "Vocabulary " + str(len(vocab))
