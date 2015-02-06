@@ -13,7 +13,7 @@ dateMonth = "([jJ]an|[jJ]anuary|[fF]eb|[fF]ebruary|[mM]ar|[mM]arch|[aA]pr|[aA]pr
 dateDay = "(0?[1-9]|[1-2][0-9]|3[0-1])"
 dateYear = "[1-9][0-9]*"
 dateReg = "(" + dateMonth + "[- ]" + dateDay + "[- ,]" + dateYear + ")"
-numReg = "([0-9]*[,.]?)+"
+numReg = "([0-9]+[,.]?)+"
 
 #generates the list of stopwords
 def generateStopwords():
