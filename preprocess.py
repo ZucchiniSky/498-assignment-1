@@ -74,7 +74,6 @@ def tokenizeText(text):
         tokens.append(date[0])
     for number in numbers:
         tokens.append(number[0])
-    print tokens
     return tokens
 
 #computes first - second
