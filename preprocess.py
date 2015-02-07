@@ -35,10 +35,6 @@ def tokenizeText(text):
     dates = re.findall(dateReg, text)
     text = " ".join(re.split(dateReg, text))
     numbers = re.findall(numReg, text)
-    print text
-    print numReg
-    print numbers
-    print re.split("[0-9]", text)
     text = " ".join(re.split("[0-9]", text))
     tokens = re.split("[\s,;!?()/]*", text)
     newTokens = []
