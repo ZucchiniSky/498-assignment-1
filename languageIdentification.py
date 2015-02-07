@@ -72,16 +72,10 @@ def main(args):
         unigramMaps.append(unimap)
         bigramMaps.append(bimap)
     INFILE = open(testfile)
-    SOLUTION = open("languageIdentification.data/solution")
     i = 1
-    correct = 0
     for line in INFILE:
         text = line.strip()
         answer = str(i) + " " + identifyLanguage(text, languageNames, unigramMaps, bigramMaps)
         print answer
         i += 1
-        if SOLUTION.readline() == answer + "\n":
-            correct += 1
     INFILE.close()
-    SOLUTION.close()
-    print str(correct) + " / " + str(i - 1)
