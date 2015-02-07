@@ -131,6 +131,6 @@ def main(args):
         print str(frequencies[i][0]) + " " + str(frequencies[i][1])
     totalfrequency = 0
     for i in range(0, len(vocab) - 1):
-        totalfrequency += frequencies[i][0]
+        totalfrequency += frequencies[i][1]
         if totalfrequency >= len(tokens) / 4:
             print "min quartile = " + str(i + 1)
