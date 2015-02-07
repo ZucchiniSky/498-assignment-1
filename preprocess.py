@@ -117,11 +117,9 @@ def main(args):
     generateStopwords()
     i = 0
     for filename in files:
-        if i % 4 == 0:
-            filetokens = processFile(filename)
-            for token in filetokens:
-                tokens.append(token)
-        i += 1
+        filetokens = processFile(filename)
+        for token in filetokens:
+            tokens.append(token)
     vocab = set(tokens)
     print "Words " + str(len(tokens))
     print "Vocabulary " + str(len(vocab))
