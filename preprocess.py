@@ -127,8 +127,11 @@ def main(args):
     for word in vocab:
         frequencies.append([word, tokens.count(word)])
     print "Top 50 Words"
-    totalfreq = 0
     frequencies = sorted(frequencies, cmp=sortByFreq)
     for i in range(0, 50):
         print str(frequencies[i][0]) + " " + str(frequencies[i][1])
-        totalfreq += frequencies[i][1]
+    totalfrequency = 0
+    for i in range(0, len(vocab) - 1):
+        totalfrequency += frequencies[i][0]
+        if totalfrequency >= len(tokens) / 4:
+            print "min quartile = " + str(i + 1)
