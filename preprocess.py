@@ -115,7 +115,10 @@ def main(args):
     files = [folder + filename for filename in listdir(folder) if isfile(join(folder, filename))]
     tokens = []
     generateStopwords()
+    i = 0
     for filename in files:
+        if i % 2 == 1:
+            continue
         filetokens = processFile(filename)
         for token in filetokens:
             tokens.append(token)
@@ -129,9 +132,3 @@ def main(args):
     frequencies = sorted(frequencies, cmp=sortByFreq)
     for i in range(0, 50):
         print str(frequencies[i][0]) + " " + str(frequencies[i][1])
-    totalfrequency = 0
-    for i in range(0, len(vocab) - 1):
-        totalfrequency += frequencies[i][1]
-        if totalfrequency >= len(tokens) / 4:
-            print "min quartile = " + str(i + 1)
-            break
