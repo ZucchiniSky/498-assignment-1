@@ -119,6 +119,7 @@ def main(args):
     for filename in files:
         if i % 2 == 1:
             continue
+        i += 1
         filetokens = processFile(filename)
         for token in filetokens:
             tokens.append(token)
