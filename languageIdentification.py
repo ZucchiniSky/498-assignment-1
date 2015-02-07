@@ -5,10 +5,24 @@
 
 import re
 
+#returns list of tokens in a SGML-less text
+def tokenizeTextNoDates(text):
+    noNumberText = " ".join(re.split("[0-9]", text))
+    tokens = re.split("[^\w]*", noNumberText)
+    return tokens
+
 #returns a map of unigrams to frequencies and a map of bigrams to frequencies
 def trainBigramLanguageModel(training):
-    unigrams = re.findall("\w", training)
-    bigrams = re.findall("\w\w", training)
+    tokens = tokenizeTextNoDates(training)
+    unigrams = []
+    bigrams = []
+    for token in tokens:
+        currentUnigrams = re.findall("\w", token)
+        currentBigrams = re.findall("\w\w", token)
+        for unigram in currentUnigrams:
+            unigrams.append(unigram)
+        for bigram in currentBigrams:
+            bigrams.append(bigram)
     uniFreq = {}
     biFreq = {}
     uniset = set(unigrams)
@@ -23,19 +37,21 @@ def trainBigramLanguageModel(training):
 def identifyLanguage(text, languages, uniFreq, biFreq):
     likely = float(0)
     index = 0
+    words = tokenizeTextNoDates(text)
     for i in range(0, len(languages)):
         prob = float(1)
         charCount = len(uniFreq[i])
-        for x in range(1, len(text)):
-            bigram = text[x-1] + text[x]
-            unigram = text[x]
-            bigramFreq = 0
-            unigramFreq = 0
-            if bigram in biFreq[i]:
-                bigramFreq = biFreq[i][bigram]
-            if unigram in uniFreq[i]:
-                unigramFreq = uniFreq[i][unigram]
-            prob *= float(bigramFreq + 1) / float(unigramFreq + charCount)
+        for word in words:
+            for x in range(1, len(word)):
+                bigram = word[x-1] + word[x]
+                unigram = word[x]
+                bigramFreq = 0
+                unigramFreq = 0
+                if bigram in biFreq[i]:
+                    bigramFreq = biFreq[i][bigram]
+                if unigram in uniFreq[i]:
+                    unigramFreq = uniFreq[i][unigram]
+                prob *= float(bigramFreq + 1) / float(unigramFreq + charCount)
         if (prob > likely):
             likely = prob
             index = i
@@ -56,16 +72,10 @@ def main(args):
         unigramMaps.append(unimap)
         bigramMaps.append(bimap)
     INFILE = open(testfile)
-    SOLUTION = open("languageIdentification.data/solution")
     i = 1
-    correct = 0
     for line in INFILE:
         text = line.strip()
         answer = str(i) + " " + identifyLanguage(text, languageNames, unigramMaps, bigramMaps)
         print answer
         i += 1
-        if SOLUTION.readline() == answer + "\n":
-            correct += 1
     INFILE.close()
-    SOLUTION.close()
-    print str(correct) + " / " + str(i - 1)
