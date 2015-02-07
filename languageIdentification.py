@@ -7,8 +7,8 @@ import re
 
 #returns a map of unigrams to frequencies and a map of bigrams to frequencies
 def trainBigramLanguageModel(training):
-    unigrams = re.findall("[^\s]", training)
-    bigrams = re.findall("[^\s][^\s]", training)
+    unigrams = re.findall("\w", training)
+    bigrams = re.findall("\w\w", training)
     uniFreq = {}
     biFreq = {}
     uniset = set(unigrams)
