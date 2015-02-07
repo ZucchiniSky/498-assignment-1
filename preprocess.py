@@ -134,3 +134,4 @@ def main(args):
         totalfrequency += frequencies[i][1]
         if totalfrequency >= len(tokens) / 4:
             print "min quartile = " + str(i + 1)
+            break
