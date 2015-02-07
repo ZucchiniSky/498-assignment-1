@@ -37,6 +37,7 @@ def tokenizeText(text):
     numbers = re.findall(numReg, text)
     print text
     print numReg
+    print numbers
     text = " ".join(re.split(numReg, text))
     tokens = re.split("[\s,;!?()/]*", text)
     newTokens = []
