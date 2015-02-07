@@ -38,8 +38,8 @@ def tokenizeText(text):
     print text
     print numReg
     print numbers
-    print re.split(numReg, text)
-    text = " ".join(re.split(numReg, text))
+    print re.split("[0-9]", text)
+    text = " ".join(re.split("[0-9]", text))
     tokens = re.split("[\s,;!?()/]*", text)
     newTokens = []
     for token in tokens:
